@@ -10,6 +10,6 @@ An elegant game Rock Paper Scissors javascript challenge from Frontend Mentor
 
 ## Image
 
-![preview](https://github.com/agmkowalczyk/ts-todo/blob/main/screenshot_rps1.png "Rock Paper Scissors")
+![preview](https://github.com/agmkowalczyk/js-rock-paper-scissors/blob/main/screenshot_rps1.png "Rock Paper Scissors")
 
-![preview](https://github.com/agmkowalczyk/ts-todo/blob/main/screenshot_rps2.png "Rock Paper Scissors")
+![preview](https://github.com/agmkowalczyk/js-rock-paper-scissors/blob/main/screenshot_rps2.png "Rock Paper Scissors")
