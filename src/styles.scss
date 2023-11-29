@@ -1,0 +1,356 @@
+:root {
+  --color-bright: #fff;
+  --color-dark-text: hsl(229, 25%, 31%);
+  --color-score: hsl(229, 64%, 46%);
+  --color-border: hsl(217, 16%, 45%);
+  --color-scissors: hsl(39, 89%, 49%), hsl(40, 84%, 53%);
+  --color-paper: hsl(230, 89%, 62%), hsl(230, 89%, 65%);
+  --color-rock: hsl(349, 71%, 52%), hsl(349, 70%, 56%);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+header {
+  border: 3px solid var(--color-border);
+  border-radius: 15px;
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 0.8em 1.1em 0.8em 2.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+h1 {
+  color: var(--color-bright);
+
+  span {
+    display: block;
+    font-size: 1.2em;
+    line-height: 0.8;
+  }
+}
+
+.score {
+  background: var(--color-bright);
+  text-align: center;
+  padding: 1em 3em 0.6em;
+  border-radius: 10px;
+
+  span {
+    font-size: 1em;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--color-score);
+  }
+
+  .points {
+    color: var(--color-dark-text);
+    display: block;
+    font-size: 4em;
+    line-height: 1.1;
+  }
+}
+
+main {
+  margin: 0 auto;
+  max-width: 700px;
+  position: relative;
+  min-height: 40rem;
+}
+
+section {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  box-shadow: inset 0 -7px 2px rgba(0, 0, 0, 0.3);
+  border: none;
+
+  &.winner {
+    &.circle--1 {
+      box-shadow: inset 0 -7px 2px rgba(0, 0, 0, 0.3),
+        0 0 0 2em rgba(255, 255, 255, 0.05);
+    }
+    &.circle--2 {
+      box-shadow: inset 0 -7px 2px rgba(0, 0, 0, 0.3),
+        0 0 0 2em rgba(255, 255, 255, 0.05), 0 0 0 4em rgba(255, 255, 255, 0.05);
+    }
+    &.circle--3 {
+      box-shadow: inset 0 -7px 2px rgba(0, 0, 0, 0.3),
+        0 0 0 2em rgba(255, 255, 255, 0.05), 0 0 0 4em rgba(255, 255, 255, 0.05),
+        0 0 0 6em rgba(255, 255, 255, 0.05);
+    }
+  }
+  &__img-container {
+    background-color: var(--color-bright);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 7px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 45%;
+  }
+
+  &--paper {
+    background: linear-gradient(var(--color-paper));
+  }
+
+  &--scissors {
+    background: linear-gradient(var(--color-scissors));
+  }
+
+  &--rock {
+    background: linear-gradient(var(--color-rock));
+  }
+}
+
+.options {
+  aspect-ratio: 313 / 278;
+  background-image: url("../images/bg-triangle.svg");
+  background-size: cover;
+  width: 45%;
+  margin: 0 auto;
+
+  &.slide-left {
+    transform: translate(-200%, -50%);
+    opacity: 0;
+  }
+
+  .button {
+    width: 63%;
+    cursor: pointer;
+    position: absolute;
+
+    &--paper {
+      left: 0;
+      top: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    &--scissors {
+      right: 0;
+      top: 0;
+      transform: translate(50%, -50%);
+    }
+
+    &--rock {
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+    }
+  }
+}
+
+.game {
+  color: var(--color-bright);
+  display: flex;
+  transform: translate(200%, -50%);
+  opacity: 0;
+  width: 100%;
+  align-items: center;
+
+  @media screen and (max-width: 480px) {
+    flex-wrap: wrap;
+  }
+
+  &.slide-left {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+
+  .pick {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    align-items: flex-start;
+    position: relative;
+
+    &--player {
+      transform: translate(-30%, 0);
+    }
+
+    &--computer {
+      transform: translate(30%, 0);
+    }
+
+    &__title {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 3em;
+      font-size: 1.5em;
+      letter-spacing: 2px;
+      position: absolute;
+      bottom: 100%;
+      transform: translate(-50%, 0);
+      left: 50%;
+    }
+
+    &__container {
+      width: 85%;
+
+      &--placeholder {
+        position: absolute;
+        aspect-ratio: 1 / 1;
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 50%;
+      }
+
+      &--computer {
+        transform: scale(0);
+
+        &.grow {
+          transform: scale(1);
+          transition: transform 1s;
+        }
+      }
+    }
+
+    .button {
+      transition: opacity 1s;
+    }
+  }
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s;
+  position: absolute;
+  left: 50%;
+
+  &.shown {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__text {
+    font-size: 2.4em;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+  }
+  &__button {
+    border: none;
+    padding: 12px 32px;
+    cursor: pointer;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    font-size: 0.6em;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 860px) and (min-width: 479px) {
+  .game {
+    .pick {
+      &--player {
+        transform: translate(-20%, 0);
+      }
+      &--computer {
+        transform: translate(20%, 0);
+      }
+      &__container {
+        width: 65%;
+      }
+    }
+  }
+
+  .result {
+    &__text {
+      font-size: 1.4em;
+    }
+    &__button {
+      padding: 8px 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    min-height: 30rem;
+  }
+  h1 {
+    font-size: 1.4em;
+  }
+  .score {
+    padding: 8px 12px;
+  }
+
+  .game {
+    flex-wrap: wrap;
+
+    .pick {
+      &__title {
+        font-size: 0.8em;
+      }
+      &--player {
+        transform: translate(0, 0);
+      }
+      &--computer {
+        transform: translate(0, 0);
+      }
+    }
+  }
+
+  .pick,
+  .pick.moved,
+  .result {
+    position: relative;
+    left: 0;
+    right: 0;
+    transform: translate(0, 0);
+  }
+
+  .result {
+    width: 100%;
+    margin-top: 50px;
+    transform: translate(0, 0) scaleX(0);
+  }
+
+  .result.shown {
+    transform: translate(0, 0) scaleX(1);
+  }
+
+  .button {
+    font-size: 0.5em;
+  }
+}
